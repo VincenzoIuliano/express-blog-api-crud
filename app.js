@@ -17,6 +17,8 @@ const server = app.listen(port,() => {
     console.log(`Server listening on port: ${port}`);
 })
 
+// PROCESSO PER FARE USCITA GRACEFUL 
+
 process.on('SIGINT', () => {
     console.log('Uscita graceful');
     server.close();
