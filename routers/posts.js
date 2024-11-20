@@ -1,51 +1,27 @@
 const express = require('express')
 const router = express.Router();
 const posts = require('../data/posts')
+const postController = require('../controllers/postController')
 
 
 // CRUD sulla risorsa post 
 
 // index 
-router.get('/',(req,res) => {
-    // res.send('Ecco l\'elenco dei post!');
-    res.json(posts)
-})
+router.get('/', postController.index);
 
 // show 
-router.get('/:id',(req,res) => {
-    const {id} = req.params;
-    // res.send(`Ecco il post con id: ${id}`);
-    if (id > posts.length) {
-        //res.status(404);
-        res.json({
-           err: 'post not found' 
-        });
-    } else {
-        res.json(posts[id]);
-    }
-})
+router.get('/:id',postController.show);
 
 // store 
-router.post('/', (req,res) => {
-    res.send('Creazione di un nuovo post');       
-})
+router.post('/', postController.store)
 
 // update 
-router.put('/:id',(req,res) => {
-    const id = req.params.id
-    res.send(`Modifica integrale del post ${id}`)
-})
+router.put('/:id',postController.update)
 
 // modify 
-router.patch('/:id',(req,res) => {
-    const id = req.params.id
-    res.send(`Modifica parziale del post ${id}`)
-})
+router.patch('/:id',postController.modify)
 
 // destroy 
-router.delete('/:id',(req,res) => {
-    const id = req.params.id
-    res.send(`Rimozione del post ${id}`)
-})
+router.delete('/:id',postController.destroy)
 
 module.exports = router ;
