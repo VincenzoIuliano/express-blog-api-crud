@@ -1,5 +1,6 @@
 const posts = require("../data/posts");
 
+
 // index
 function index(req, res) {
   // console.log('Ecco l\' elenco dei post:')
@@ -8,6 +9,7 @@ function index(req, res) {
     console.log(`Stampiamo solo i post con il tag: ${req.query.tag}`);
 
     let filteredPost = [];
+
 
     for (let i = 0; i < posts.length; i++) {
       
@@ -44,6 +46,7 @@ function show(req, res) {
 
 // store
 function store(req, res) {
+    console.log(req.body);
   res.send("Creazione di un nuovo post");
 }
 
